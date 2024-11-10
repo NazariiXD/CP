@@ -1,21 +1,16 @@
 import models.Student;
 
 import java.util.*;
-import java.util.stream.Collectors;
 
-public class DormitoryManager {
+public class DormitoryManagerWithOutStream implements IManager {
     private final List<Student> students;
 
-    public DormitoryManager(List<Student> students) {
+    public DormitoryManagerWithOutStream(List<Student> students) {
         this.students = students;
     }
 
-    public Map<Boolean, List<Student>> partitionByBeneficiary(){
-        return students.stream()
-                .collect(Collectors.partitioningBy(Student::isBeneficiary));
-    }
-
-    public Map<Boolean, List<Student>> partitionByBeneficiaryNoStream(){
+    @Override
+    public Map<Boolean, List<Student>> partitionByBeneficiary() {
         var partitionedStudents = new HashMap<Boolean, List<Student>>();
         partitionedStudents.put(true, new ArrayList<>());
         partitionedStudents.put(false, new ArrayList<>());
@@ -27,12 +22,8 @@ public class DormitoryManager {
         return partitionedStudents;
     }
 
-    public Map<String, List<Student>> groupByDormitory(){
-        return students.stream()
-                .collect(Collectors.groupingBy(Student::getDormitory));
-    }
-
-    public Map<String, List<Student>> groupByDormitoryNoStream() {
+    @Override
+    public Map<String, List<Student>> groupByDormitory() {
         var groupedByDormitory = new HashMap<String, List<Student>>();
 
         for (var student : students) {
@@ -44,31 +35,21 @@ public class DormitoryManager {
         return groupedByDormitory;
     }
 
-    public Map<Integer, Long> countStudentsByRoom(){
-        return students.stream()
-                .collect(Collectors.groupingBy(Student::getRoomNumber, Collectors.counting()));
-    }
-
-    public Map<Integer, Integer> countStudentsByRoomNoStream(){
-        var roomCount = new HashMap<Integer, Integer>();
+    @Override
+    public Map<Integer, Long> countStudentsByRoom() {
+        var roomCount = new HashMap<Integer, Long>();
 
         for (var student : students) {
             roomCount.put(
                     student.getRoomNumber(),
-                    roomCount.getOrDefault(student.getRoomNumber(), 0) + 1);
+                    roomCount.getOrDefault(student.getRoomNumber(), 0L) + 1L);
         }
 
         return roomCount;
     }
 
-    public List<Student> sortByAgeAndBeneficiary(){
-        return students.stream()
-                .sorted(Comparator.comparingInt(Student::getAge)
-                        .thenComparing(Student::isBeneficiary))
-                .collect(Collectors.toList());
-    }
-
-    public List<Student> sortByAgeAndBeneficiaryNoStream(){
+    @Override
+    public List<Student> sortByAgeAndBeneficiary() {
         var sortedStudents = new ArrayList<Student>(students);
 
         sortedStudents.sort(
@@ -78,13 +59,8 @@ public class DormitoryManager {
         return sortedStudents;
     }
 
-    public Set<Integer> getUniqueRoomNumbers(){
-        return students.stream()
-                .map(Student::getRoomNumber)
-                .collect(Collectors.toSet());
-    }
-
-    public Set<Integer> getUniqueRoomNumbersNoStream(){
+    @Override
+    public Set<Integer> getUniqueRoomNumbers() {
         var uniqueRoomNumbers = new HashSet<Integer>();
 
         for (var student : students) {
@@ -94,12 +70,8 @@ public class DormitoryManager {
         return uniqueRoomNumbers;
     }
 
+    @Override
     public Optional<Student> findMaxFeeStudent() {
-        return students.stream()
-                .max(Comparator.comparingDouble(Student::getFee));
-    }
-
-    public Optional<Student> findMaxFeeStudentNoStream() {
         if (students.isEmpty()){
             return Optional.empty();
         }

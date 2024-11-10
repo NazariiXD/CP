@@ -3,57 +3,45 @@ import models.Student;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Map;
+import java.util.Scanner;
 
 public class Main {
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
         var students = getStudents();
 
-        var manager = new DormitoryManager(students);
+        IManager manager;
+
+        System.out.println("Введіть 1 із стрімом або 2 без:");
+        int choice = scanner.nextInt();
+
+        if (choice == 1) {
+            manager = new DormitoryManagerWithStream(students);
+        } else if (choice == 2) {
+            manager = new DormitoryManagerWithOutStream(students);
+        } else {
+            System.out.println("Невірний вибір, використовуємо ManagerA за замовчуванням.");
+            manager = new DormitoryManagerWithStream(students);
+        }
 
         System.out.println("Partitioning students into beneficiaries and non-beneficiaries:");
-        System.out.println("With stream");
         printPartitionedStudents(manager.partitionByBeneficiary());
 
-        System.out.println("No stream");
-        printPartitionedStudents(manager.partitionByBeneficiaryNoStream());
 
         System.out.println("\nGrouping students by dormitories:");
-        System.out.println("With stream");
         printGroupedDormitoryStudents(manager.groupByDormitory());
 
-        System.out.println("No stream");
-        printGroupedDormitoryStudents(manager.groupByDormitoryNoStream());
-
         System.out.println("\nCounting students in each room:");
-        System.out.println("With stream");
         printRoomCount(manager.countStudentsByRoom());
 
-        System.out.println("No stream");
-        printRoomCount(manager.countStudentsByRoomNoStream());
-
         System.out.println("\nSorting students by age and beneficiary status:");
-        System.out.println("With stream");
         manager.sortByAgeAndBeneficiary().forEach(System.out::println);
 
-        System.out.println("No stream");
-        manager.sortByAgeAndBeneficiaryNoStream().forEach(System.out::println);
-
         System.out.println("\nUnique room numbers:");
-        System.out.println("With stream");
         System.out.println(manager.getUniqueRoomNumbers());
 
-        System.out.println("No stream");
-        System.out.println(manager.getUniqueRoomNumbersNoStream());
-
         System.out.println("\nStudent with the highest fee:");
-        System.out.println("With stream");
         manager.findMaxFeeStudent().ifPresentOrElse(
-                student -> System.out.println("Student with max fee: \n" + student),
-                () -> System.out.println("Student not found")
-        );
-
-        System.out.println("No stream");
-        manager.findMaxFeeStudentNoStream().ifPresentOrElse(
                 student -> System.out.println("Student with max fee: \n" + student),
                 () -> System.out.println("Student not found")
         );
