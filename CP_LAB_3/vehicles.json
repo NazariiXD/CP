@@ -1,0 +1,72 @@
+[
+  {
+    "licensePlate": "ABC123",
+    "brand": {
+      "name": "Toyota",
+      "country": "Japan"
+    }
+  },
+  {
+    "licensePlate": "XYZ789",
+    "brand": {
+      "name": "BMW",
+      "country": "Germany"
+    }
+  },
+  {
+    "licensePlate": "DEF456",
+    "brand": {
+      "name": "Ford",
+      "country": "USA"
+    }
+  },
+  {
+    "licensePlate": "LMN345",
+    "brand": {
+      "name": "Tesla",
+      "country": "USA"
+    }
+  },
+  {
+    "licensePlate": "QRS678",
+    "brand": {
+      "name": "Honda",
+      "country": "Japan"
+    }
+  },
+  {
+    "licensePlate": "TUV901",
+    "brand": {
+      "name": "Audi",
+      "country": "Germany"
+    }
+  },
+  {
+    "licensePlate": "WXY234",
+    "brand": {
+      "name": "Chevrolet",
+      "country": "USA"
+    }
+  },
+  {
+    "licensePlate": "ZAB567",
+    "brand": {
+      "name": "Nissan",
+      "country": "Japan"
+    }
+  },
+  {
+    "licensePlate": "JKL890",
+    "brand": {
+      "name": "Hyundai",
+      "country": "South Korea"
+    }
+  },
+  {
+    "licensePlate": "MNO123",
+    "brand": {
+      "name": "Peugeot",
+      "country": "France"
+    }
+  }
+]
