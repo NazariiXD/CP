@@ -8,7 +8,7 @@ import java.util.regex.Pattern;
 
 public class PasswordExtractor implements IPasswordExtractor {
     private static final Pattern passwordPattern = Pattern.compile(
-            "^(?=(.*[A-ZА-Я]))(?=(.*[a-zа-я]))(?=(.*\\d))(?=(.*[!@#$%^&*])).{8,20}$"
+            "^(?=(.*[A-ZА-Я]))(?=(.*[a-zа-я]))(?=(.*\\d))(?=(.*[!@#$%^&*]))[A-ZА-Яa-zа-я\\d!@#$%^&*]{8,20}$"
     );
 
     @Override
@@ -17,7 +17,7 @@ public class PasswordExtractor implements IPasswordExtractor {
             throw new IllegalArgumentException("Input text cannot be null");
         }
 
-        text = text.replaceAll("[.,\"]", "");
+        text = text.replaceAll("[.,\"]", " ");
 
         var validPasswords = new ArrayList<String>();
 

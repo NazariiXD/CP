@@ -1,0 +1,56 @@
+- !!org.example.models.Vehicle
+  brand:
+    country: Japan
+    name: Toyota
+  licensePlate: ABC123
+  year: 2015
+- !!org.example.models.Vehicle
+  brand:
+    country: Germany
+    name: BMW
+  licensePlate: XYZ789
+  year: 2020
+- !!org.example.models.Vehicle
+  brand:
+    country: USA
+    name: Ford
+  licensePlate: DEF456
+  year: 2018
+- !!org.example.models.Vehicle
+  brand: null
+  licensePlate: LMN345
+  year: 2008
+- !!org.example.models.Vehicle
+  brand:
+    country: Japan
+    name: Honda
+  licensePlate: QRS678
+  year: 2019
+- !!org.example.models.Vehicle
+  brand:
+    country: Germany
+    name: Audi
+  licensePlate: TUV901
+  year: 2022
+- !!org.example.models.Vehicle
+  brand:
+    country: USA
+    name: Chevrolet
+  licensePlate: WXY234
+  year: 2017
+- !!org.example.models.Vehicle
+  brand:
+    country: Japan
+    name: Nissan
+  licensePlate: ZAB567
+  year: 2021
+- !!org.example.models.Vehicle
+  brand:
+    country: South Korea
+    name: Hyundai
+  licensePlate: JKL890
+  year: 2018
+- !!org.example.models.Vehicle
+  brand: null
+  licensePlate: MNO123
+  year: 2005
