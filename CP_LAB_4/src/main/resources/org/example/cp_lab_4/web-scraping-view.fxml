@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.VBox?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Spinner?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TextArea?>
+<AnchorPane xmlns:fx="http://javafx.com/fxml" fx:controller="org.example.cp_lab_4.controllers.WebScrapingController">
+    <VBox spacing="10" AnchorPane.leftAnchor="30" AnchorPane.rightAnchor="50" AnchorPane.topAnchor="20" AnchorPane.bottomAnchor="20">
+        <HBox spacing="10">
+            <TextField fx:id="urlInput" promptText="Enter URL" prefWidth="400" />
+            <Button text="Add URL" onAction="#onAddUrl" />
+        </HBox>
+
+        <ListView fx:id="urlList" prefHeight="100" />
+
+        <HBox spacing="10">
+            <Label text="Threads:" />
+            <Spinner fx:id="threadSpinner" min="1" max="50" initialValue="5" />
+            <Button text="Start Scraping" fx:id="startButton" onAction="#onStartButtonClick" />
+        </HBox>
+
+        <HBox spacing="10">
+            <TableView fx:id="resultTable" prefHeight="300" onMouseClicked="#onRowSelected" HBox.hgrow="ALWAYS">
+                <columns>
+                    <TableColumn text="URL" fx:id="urlColumn" prefWidth="350" />
+                    <TableColumn text="Status" fx:id="statusColumn" prefWidth="150" />
+                    <TableColumn text="Content length" fx:id="contentLengthColumn" prefWidth="150" />
+                    <TableColumn text="Execution Time (ms)" fx:id="executionTimeColumn" prefWidth="150" />
+                </columns>
+            </TableView>
+
+            <VBox spacing="10" HBox.hgrow="ALWAYS">
+                <Label text="Selected URL Content:" />
+                <TextArea fx:id="contentTextArea" prefHeight="300" prefWidth="500" editable="false"/>
+            </VBox>
+        </HBox>
+
+        <TableView fx:id="threadStatusTable" prefHeight="300" HBox.hgrow="ALWAYS">
+            <columns>
+                <TableColumn text="Thread Name" fx:id="threadNameColumn" prefWidth="200" />
+                <TableColumn text="Status" fx:id="threadStatusColumn" prefWidth="150" />
+                <TableColumn text="Result" fx:id="threadResultColumn" prefWidth="300" />
+                <TableColumn text="Total Time (ms)" fx:id="threadTotalTimeColumn" prefWidth="150" />
+            </columns>
+        </TableView>
+
+        <Label fx:id="totalTimeLabel"/>
+    </VBox>
+</AnchorPane>
